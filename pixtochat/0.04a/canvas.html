@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>pixtochat v0.0.4</title>
+	</head>
+	<body>
+		<p>pixtochat v0.0.4</p>
+		<p>"copy" and "send" have no function yet.</p>
+		<p>TODO: a lot of stuff</p>
+		<p>experiment to rewrite the drawing algorithm?</p>
+		<!--<canvas id="display" width="232" height="83"></canvas>-->
+		<canvas id="sheet" width="232" height="83" style="border:1px solid black;box-shadow: 2px 2px slategrey;"></canvas>
+
+		<div class="container">
+			<input type="image" id="icon" onclick="window.toggleSizeLarge()" src="./assets/btn/large.png"/>
+			<input type="image" id="icon" onclick="window.toggleSizeSmall()" src="./assets/btn/small.png"/>
+			<input type="image" id="white" class="palette white" src="./assets/btn/eraser.png">
+			<input type="image" id="icon" onclick="window.toggleBrush()" src="./assets/btn/brush.png">
+			<input type="image" id="clearButton" value="Clear" src="./assets/btn/erase.png"/>
+			<input type="image" id="icon" onclick="copyMsg()" src="./assets/btn/copy.png"/>
+			<input type="image" id="icon" onclick="window.sendMsg()" src="./assets/btn/send.png"/>
+		</div>
+		<!--<input type="image" id="test" onclick="window.initScr()" src="./assets/btn/test.png"/>-->
+		<p>by Locerei, 2021</p>
+
+	</body>
+		<script type="text/javascript" src='draw.js'></script>
+		<style type="text/css">
+			@font-face {font-family: NDS; src: url('./assets/fnt/nds-true-bios.ttf');}
+			p {
+				font-family: NDS;
+				font-size: 16px;
+			}
+			input {
+				border:1px solid black;
+				margin-top: 55px;
+				box-shadow: 2px 2px slategrey;
+				image-rendering: optimizeSpeed;             /* FUCK SMOOTHING, GIVE ME SPEED  */
+ 				image-rendering: -moz-crisp-edges;          /* Firefox                        */
+ 				image-rendering: -o-crisp-edges;            /* Opera                          */
+ 				image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+ 				image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+ 				-ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+ 				text-align: bottom;
+			}
+
+			html {
+				display: table;
+				margin: auto;
+				
+			}
+			body {
+				display:table-cell;
+				vertical-align: center;
+				background-color: solid azure;
+			}
+
+			.container input {
+				width: auto;
+				clear: both;
+				margin-top: 2px;
+			}
+		</style>
+</html>
