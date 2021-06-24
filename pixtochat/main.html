@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>pixtochat v0.0.4a</title>
+	</head>
+	<body>
+		<p>pixtochat v0.0.4a (2021.06.23)</p>
+		<p>"copy" and "send" have no function (still).</p>
+		<p>rewrote drawing code from scratch, looks authentic, works better</p>
+		<p>clearing canvas works, large brush and eraser do not.</p>
+		<p>aligned icons to left and right.</p>
+		<p>TODO: too much (focusing on fixing large brush and eraser next)</p>
+		<p style="text-align: center;">by Razerek, 2021</p>
+		<!--<canvas id="display" width="232" height="83"></canvas>-->
+	
+		<canvas id="sheet" width="232" height="83" style="border:1px solid black;box-shadow: 2px 2px slategrey;"></canvas>
+		<div class="container">
+			<div id="brush" class="tool brush"></div>
+			<div id="eraser" class="tool eraser"></div>
+			<div id="selected" class="tool large" value="large"></div>
+			<div id="small" class="tool small"></div>
+			<div id="send" class="button send"></div>
+			<div id="copy" class="button copy"></div>
+			<div id="clearButton" class="button clear" value="Clear"></div>
+		</div>
+		
+		<!--<input type="image" id="test" onclick="window.initScr()" src="./assets/btn/test.png"/>-->
+
+	</body>
+	
+	<script type="text/javascript">
+			
+			window.onload = function() {
+
+      //initial values
+      var currentColor = "black";
+      var currentWidth = 1;
+
+      var colors = {};
+      colors.black = "#000000";
+      colors.white = "#FFFFFF";
+
+      var width = {};
+      width.small = 1;
+      width.large = 3;
+
+      var clear = document.getElementById('clearButton');
+      var eraser = document.getElementById('eraser');
+      var canvas = document.getElementById('sheet');
+      var displayWidth = document.getElementById('selected')
+      //var displayColor = document.getElementById('scolor');
+
+      // Get a reference to the drawing context 
+      // 
+      const ctx = canvas.getContext('2d'); 
+
+      var pencil = new tool();
+
+      // This painting tool works like a drawing pencil which tracks the mouse 
+      // movements.
+
+      function tool() {
+
+        var tool = this;
+        this.started = false;
+
+        this.mousedown = function(event) {
+
+          //set color and width
+          ctx.strokeStyle = currentColor;
+          ctx.lineWidth = currentWidth;
+
+          ctx.beginPath();
+          ctx.moveTo(event._x, event._y);
+          tool.started = true;
+        };
+
+        this.mousemove = function(event) {
+          if (tool.started) {
+            ctx.lineTo(event._x, event._y);
+            ctx.stroke();
+          }
+        };
+
+        this.mousemove = function(event) {
+          if (tool.started) {
+            ctx.lineTo(event._x, event._y);
+            ctx.stroke();
+          }
+        };
+
+        this.mouseup = function(event) {
+          if (tool.started) {
+            tool.mousemove(event);
+            tool.started = false;
+          }
+        };
+      }
+
+      function onMouseEvent(event) {
+        var x, y;
+
+        // Get the mouse position relative to the canvas element.
+        // 
+        if (event.layerX || event.layerX == 0) { // Firefox
+          x = event.layerX;
+          y = event.layerY;
+        } else if (event.offsetX || event.offsetX == 0) { // Opera
+          x = event.offsetX;
+          y = event.offsetY;
+        }
+
+        event._x = x;
+        event._y = y;
+
+        // Call the event handler of the tool.
+        var func = pencil[event.type];
+        if (func) {
+          func(event);
+        }
+      }
+
+      function onClearEvent(event) {
+        pencil.started = false;
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+
+      function onClickEvent(event) {
+        //var selectedColor = event.target;   
+        var selectedWidth = event.srcElement.id;
+        //displayColor.innerHTML = selectedColor;
+        displayWidth.innerHTML = selectedWidth;
+        //currentColor = colors[selectedColor];  
+        currentWidth = width[selectedWidth];
+      }
+
+      canvas.addEventListener('mousedown', onMouseEvent, false);
+      canvas.addEventListener('mousemove', onMouseEvent, false);
+      canvas.addEventListener('mouseup', onMouseEvent, false);
+      clear.addEventListener('click', onClearEvent, false);
+
+      //var large = document.getElementById('selected');
+      //large.addEventListener('click', onClickEvent, false);
+
+      var black = document.getElementById(colors.black);
+      var white = document.getElementById(colors.white);
+
+    };
+
+	</script>
+		<style type="text/css">
+			@font-face {font-family: NDS; src: url('./assets/fnt/nds-true-bios.ttf');}
+			p {
+				font-family: NDS;
+				font-size: 16px;
+			}
+
+			html {
+				display: table;
+				margin: auto;
+				
+			}
+			body {
+				display:table-cell;
+				vertical-align: center;
+				background-color: solid azure;
+			}
+
+			.container input {
+				width: auto;
+				clear: both;
+				margin-top: 2px;
+			}
+
+			div.button {
+				border:	1px solid black;
+				box-shadow: 2px 2px slategrey;
+				position: relative;
+				bottom: 178px; right: -234px;
+				cursor: pointer;
+				margin:5px;
+			}
+
+			div.tool {
+				width: 14px;
+				height: 13px;
+				margin: 5px;
+				position: relative;
+				bottom: 89px; left: -25px;
+				border:	1px solid black;
+				box-shadow: 2px 2px slategrey;
+				cursor: pointer;
+			}
+			div.eraser {
+				background-image: url("./assets/btn/eraser.png")
+			}
+			div.brush {
+				background-image: url("./assets/btn/brush.png");
+			}
+			div.large {
+				background-image: url("./assets/btn/large.png");
+			}
+			div.small {
+				background-image: url("./assets/btn/small.png");
+			}
+			div.send {
+				background-image: url("./assets/btn/send.png");
+				width:31px;
+				height:30px;
+			}
+			div.copy {
+				background-image: url("./assets/btn/copy.png");
+				width:31px;
+				height:23px;
+			}
+			div.clear {
+				background-image: url("./assets/btn/erase.png");
+				width:31px;
+				height:24px;
+			}
+		</style>
+</html>
