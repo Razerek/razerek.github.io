@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>pixtochat v0.0.4b</title>
+		<title>pixtochat v0.0.4c</title>
 	</head>
 	<body>
-		<p>pixtochat v0.0.4b (2021.06.24)</p>
-		<p>currently non-functional in FireFox. sorry!</b>
+		<p>pixtochat v0.0.4c (2021.07.15)</p>
 		<p>"copy" and "send" have no function.</p>
-		<p>rewrote drawing code from scratch, looks authentic, works better</p>
 		<p>all tools work, but not optimal just yet</p>
+		<p>finally works in FireFox! removed unneccessary code</p>
 		<p>TODO: a lot</p>
 		<p style="text-align: center;">by Razerek, 2021</p>
 		<!--<canvas id="display" width="232" height="83"></canvas>-->
 		
-		<canvas id="sheet" width="232" height="83" style="border:1px solid black;box-shadow: 2px 2px slategrey; fill: solid white;"></canvas>
+		<canvas id="sheet" width="232" height="83" style="border:1px solid black;box-shadow: 2px 2px slategrey;"></canvas>
 		<div class="container">
 			<div id="brush" class="tool brush"></div>
 			<div id="eraser" class="tool eraser"></div>
@@ -53,14 +52,9 @@
       var displayWidth = document.getElementById('selected')
       var displayTool = document.getElementById('selected');
 
-      // Get a reference to the drawing context 
-      // 
       const ctx = canvas.getContext('2d'); 
 
       var pencil = new tool();
-
-      // This painting tool works like a drawing pencil which tracks the mouse 
-      // movements.
 
       function tool() {
 
@@ -69,7 +63,6 @@
 
         this.mousedown = function(event) {
 
-          //set color and width
           ctx.strokeStyle = currentTool;
           ctx.lineWidth = currentWidth;
 
@@ -103,20 +96,14 @@
       function onMouseEvent(event) {
         var x, y;
 
-        // Get the mouse position relative to the canvas element.
-        // 
-        if (event.layerX || event.layerX == 0) { // Firefox
-          x = event.layerX;
-          y = event.layerY;
-        } else if (event.offsetX || event.offsetX == 0) { // Opera
+     	if (event.offsetX || event.offsetX == 0) { // Opera
           x = event.offsetX;
           y = event.offsetY;
         }
 
         event._x = x;
         event._y = y;
-
-        // Call the event handler of the tool.
+        
         var func = pencil[event.type];
         if (func) {
           func(event);
