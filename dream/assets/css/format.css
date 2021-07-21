@@ -1,0 +1,14 @@
+	@font-face {font-family: mono; src:	url('./assets/fnt/mono.ttf');}
+		p {
+			font-family: mono;
+			font-size: 12px;
+		}
+
+		a {
+			font-family: mono;
+			color:black;
+			margin: left;
+		}
+		object {
+			display: table;
+			margin: auto;
