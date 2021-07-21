@@ -9,6 +9,10 @@
 			color:black;
 			margin: left;
 		}
+
+		body {
+			background-color: floralwhite;
+		}
 		object {
 			display: table;
 			margin: auto;
