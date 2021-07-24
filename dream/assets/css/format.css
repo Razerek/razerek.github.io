@@ -1,0 +1,26 @@
+	@font-face {font-family: NDS; src:	url('./assets/fnt/nds-true-bios.ttf');}
+		p {
+			font-family: NDS;
+			font-size: 20px;
+		}
+
+		a {
+			color:black;
+			margin: left;
+		}
+
+		body {
+			background-color: whitesmoke;
+		}
+		object {
+			
+			display: table;
+			margin: auto;
+			margin-top: 50px;
+			
+		}
+		input {
+			margin: auto;
+			display: table;
+
+		}
