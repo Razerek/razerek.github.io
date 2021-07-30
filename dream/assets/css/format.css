@@ -1,0 +1,27 @@
+
+		a {
+			color:black;
+			margin: left;
+		}
+
+		object {
+			
+			display: table;
+			margin: auto;
+			margin-top: 150px;
+			border-style: ridge;
+			border-color:  lightgrey dimgrey dimgrey lightgrey;
+			box-shadow: slategrey;
+			border-radius: 5px;
+		}
+		input {
+			margin: auto;
+			display: table;
+
+		}
+
+		#top {
+			position: relative;
+			margin-left:400px;
+		}
+

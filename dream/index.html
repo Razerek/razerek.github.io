@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>dream.journal</title>
+<style type="text/css">
+	@font-face {font-family: NDS; src: url('../_assets/fnt/nds-true-bios.ttf');}
+		p {
+			font-family: NDS;
+			font-size: 16px;
+		}
+		body {
+			background-image: url('../main/assets/gfx/spr/grid.gif');
+		}
+</style>
+
+<link rel="stylesheet" type="text/css" href="../_assets/css/animations.css">
+<object id="textdata" data="test.html" type="text/html"
+width="500" style="height:310px">
+<link rel="stylesheet" type="text/css" href="./assets/css/format.css">
+<a href="test.html">unsupported browser.</a>
+</object>
+<div class="scroll-left">
+
+</div>
+<input id="snake" onclick="wake()"type="image" name="sleep1" src="./assets/gfx/sleep1.gif">
+<input type="image" src="../_assets/btn/home.png" name="home" onclick="main()">
+</head>
+<body>
+	<script type="text/javascript">
+		function main()
+		{
+			window.location.replace("../main/test.html")
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+@font-face {font-family: NDS; src:url('../../_assets/fnt/nds-true-bios.ttf');}
+	p {
+		font-family: NDS;
+		font-size: 16px;
+	}
