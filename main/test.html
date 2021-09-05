@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Razerek</title>
+</head>
+<body>
+<div id="box">
+	<div id="bottom"></div>
+	<div id="top"></div>
+	<div id="pixto">
+		<input type="image" src="./assets/gfx/spr/pixtochat.png" alt="pixto" onclick="openPixto()">
+		<input type="image" src="./assets/gfx/spr/dreams.png" alt="pixto" onclick="openDream()">
+		<input type="image" src="./assets/gfx/spr/unknown.png" alt="pixto" onclick="">
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+			function openPixto(){
+				var win=window.open('https://razerek.com/pixtochat/',"_blank","toolbar=no,width=450,height=280");
+				win.focus();
+			}
+			function openDream(){
+				var win=window.open('https://razerek.com/dream/',"_blank");
+				win.focus();
+			}
+		</script>
+
+<style type="text/css">
+
+	@font-face {font-family: NDS; src: url('./assets/fnt/nds-true-bios.ttf');}
+			p {
+				font-family: NDS;
+				font-size: 16px;
+			}
+	html {
+		display: table;
+		margin: auto;
+	}
+	body {
+		display:table-cell;
+		vertical-align: center;
+		background-color: ghostwhite;
+	}
+
+	#bottom {
+		width:110px;
+		height:109px;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		background-image:url("./assets/gfx/spr/lugia.png");
+	}
+
+	#top {
+		width:435px;
+		height:41px;
+		position:absolute;
+		top: 0;
+		right:0;
+		background-image:url("./assets/gfx/spr/intro.png");
+	}
+	
+	#pixto {
+		width:65px;
+		height:22;	
+		bottom:0;
+		right:0;
+		position:absolute;
+	}
+
+	#box {
+		width:500px;
+		padding: 10px;
+	}
+.scroll-left {
+ height: 50px;	
+ overflow: hidden;
+ position: relative;
+}
+.scroll-left p {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ line-height: 50px;
+ text-align: center;
+ /* Starting position */
+ -moz-transform:translateX(100%);
+ -webkit-transform:translateX(100%);	
+ transform:translateX(100%);
+ /* Apply animation to this element */	
+ -moz-animation: scroll-left 10s linear infinite;
+ -webkit-animation: scroll-left 10s linear infinite;
+ animation: scroll-left 10s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes scroll-left {
+ 0%   { -moz-transform: translateX(100%); }
+ 100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes scroll-left {
+ 0%   { -webkit-transform: translateX(100%); }
+ 100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes scroll-left {
+ 0%   { 
+ -moz-transform: translateX(100%); /* Browser bug fix */
+ -webkit-transform: translateX(100%); /* Browser bug fix */
+ transform: translateX(100%); 		
+ }
+ 100% { 
+ -moz-transform: translateX(-100%); /* Browser bug fix */
+ -webkit-transform: translateX(-100%); /* Browser bug fix */
+ transform: translateX(-100%); 
+ }
+}
+</style>
+
+<div class="scroll-left">
+<p>{% extends "admin/base_Sınırsız Kurtarmanın Tadını Çıkarmak İçin Pro Sürümünü Alın </p>
+
+</div>
+	
+
+</style>
+</html>
