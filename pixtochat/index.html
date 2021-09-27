@@ -1,51 +1,47 @@
 <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>pixtochat v0.0.5</title>
+</head>
 
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>pixtochat v0.0.4c</title>
-	</head>
-	<body>
-
-		<p>pixtochat v0.0.4d (2021.07.29)</p>
-		<p style="text-align: auto;">by Razerek, 2021</p>
-
-		<!--<canvas id="display" width="232" height="83"></canvas>-->
-		
-		<canvas id="sheet" width="232" height="83" style="border:1px solid black;box-shadow: 2px 2px slategrey;"></canvas>
-		<div class="container">
-			<div id="brush" class="tool brush"></div>
-			<div id="eraser" class="tool eraser"></div>
-			<div id="large" class="tool large"></div>
-			<div id="small" class="tool small"></div>
-			<div id="send" class="button send"></div>
-			<div id="copy" class="button copy"></div>
-			<div id="clearButton" class="button clear" value="Clear"></div>
-		</div>
-		
-		<p id="selected" style=" color: white;"></p>
-		
-		<!--<input type="image" id="test" onclick="window.initScr()" src="./assets/btn/test.png"/>-->
-
-	
-	
-	<script type="text/javascript">
-			
-	window.onload = function() {
+<body>
+    <p>pixtochat v0.0.5 (2021.09.27) </p>  
+    <div id="main">
+      <canvas id="sheet" width="232" height="83" style="border:1px solid black;box-shadow: 2px 2px slategrey;"></canvas>
+      <div id="buttons">
+        <!-- <input type="image" id="copy" class="button_copy" src="./assets/btn/copy.png">
+        <input type="image" id="send" class="button_send" src="./assets/btn/send.png"> </!-->
+        <input type="image" id="clear" class="button_clear" src="./assets/btn/erase.png">
+        <input type="image" id="fill" class="button_fill" src="./assets/btn/fill.png">
+        <input type="image" id="pencil" class="tool_pencil" src="./assets/btn/brush.png">
+        <input type="image" id="eraser" class="tool_eraser" src="./assets/btn/eraser.png">
+        <input type="image" id="large" class="tool_large" src="./assets/btn/large.png">
+        <input type="image" id="small" class="tool_small" src="./assets/btn/small.png">
+        </div>
+    </div>
+        <p id="selected" style=" color: black;"></p>
+       
+    
+    <script type="text/javascript">
+    
+  window.onload = function() {
 
       //initial values
       var currentTool = "brush";
       var currentWidth = 1;
 
       let tools = {
-      	brush: "#000000",
-      	eraser: "#FFFFFF"
+        pencil: "#000000",
+        eraser: "#FFFFFF"
       };
 
       let width = {
-      	small: 1,
-      	large: 3
+        small: 1,
+        large: 3
       }
    
-      var clear = document.getElementById('clearButton');
+      var clear = document.getElementById('clear');
       //var eraser = document.getElementById('eraser');
       var canvas = document.getElementById('sheet');
       var displayWidth = document.getElementById('selected')
@@ -95,7 +91,7 @@
       function onMouseEvent(event) {
         var x, y;
 
-     	if (event.offsetX || event.offsetX == 0) { // Opera
+      if (event.offsetX || event.offsetX == 0) { // Opera
           x = event.offsetX;
           y = event.offsetY;
         }
@@ -115,6 +111,12 @@
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
 
+      function onFillEvent(event) {
+        pencil.started=false;
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+
       function onClickEvent(event) {
           
         var selectedWidth = event.srcElement.id;
@@ -130,6 +132,7 @@
       canvas.addEventListener('mousemove', onMouseEvent, false);
       canvas.addEventListener('mouseup', onMouseEvent, false);
       clear.addEventListener('click', onClearEvent, false);
+      fill.addEventListener('click', onFillEvent, false);
 
       var large = document.getElementById("large");
       large.addEventListener('click', onClickEvent, false);
@@ -140,99 +143,37 @@
       var eraser = document.getElementById("eraser");
       eraser.addEventListener('click', onClickEvent, false);
 
-      var brush = document.getElementById("brush");
+      var brush = document.getElementById("pencil");
       brush.addEventListener('click', onClickEvent, false);
-		
+    
     };
 
-    function main()
-		{
-			window.location.replace("../../main/test.html")
-		}
-	</script>
-		<style type="text/css">
-			@font-face {font-family: NDS; src: url('./assets/fnt/nds-true-bios.ttf');}
-			p {
-				font-family: NDS;
-				font-size: 16px;
-			}
+  </script>
+</body>
+    <style type="text/css">
+      @font-face {font-family: NDS; src: url('./assets/fnt/nds-true-bios.ttf');}
+      p {
+        font-family: NDS;
+        font-size: 16px;
+      }
+      html {
+        display: table;
+        margin: auto;
+        font-family: NDS;
+        font-size: 16px;
+        image-rendering: auto;
+        image-rendering: crisp-edges;
+        image-rendering: pixelated;
+      } 
+      input {
+        border: 1px solid black;
+        margin-left: 13px;
+        box-shadow: 2px 2px slategrey;
+      }
 
-			html {
-				display: table;
-				margin: auto;
-				font-family: NDS;
-				font-size: 16px;
-				image-rendering: auto;
-  				image-rendering: crisp-edges;
-  				image-rendering: pixelated;
-			}
-			body {
-
-				display:table-cell;
-				vertical-align: center;
-
-			}
-
-			.container input {
-				width: auto;
-				clear: both;
-				margin-top: 2px;
-			}
-
-			div.button {
-				border:	1px solid black;
-				box-shadow: 2px 2px slategrey;
-				position: relative;
-				bottom: 178px; right: -234px;
-				cursor: pointer;
-				margin:5px;
-			}
-
-			div.tool {
-				width: 14px;
-				height: 13px;
-				margin: 5px;
-				position: relative;
-				bottom: 89px; left: -25px;
-				border:	1px solid black;
-				box-shadow: 2px 2px slategrey;
-				cursor: pointer;
-			}
-			div.eraser {
-				background-image: url("./assets/btn/eraser.png")
-			}
-			div.brush {
-				background-image: url("./assets/btn/brush.png");
-			}
-			div.large {
-				background-image: url("./assets/btn/large.png");
-			}
-			div.small {
-				background-image: url("./assets/btn/small.png");
-			}
-			div.send {
-				background-image: url("./assets/btn/send.png");
-				width:31px;
-				height:30px;
-			}
-			div.copy {
-				background-image: url("./assets/btn/copy.png");
-				width:31px;
-				height:23px;
-			}
-			div.clear {
-				background-image: url("./assets/btn/erase.png");
-				width:31px;
-				height:24px;
-			}
-
-			#box {
-				border-radius: 5px;
-				border-style: ridge;
-				padding: 10px;
-				margin-right:20px;
-				border-color:  lightgrey dimgrey dimgrey lightgrey;
-			}
-		</style>
-
-</body></html>
+      #buttons {
+        margin-top: 10px;
+      }
+      
+    </style>
+</html>
