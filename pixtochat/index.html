@@ -2,11 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>pixtochat v0.0.5a</title>
+  <title>pixtochat v0.0.5b</title>
 </head>
 
 <body>
-    <p>pixtochat v0.0.5a (2021.09.27) </p>  
+    <p>pixtochat v0.0.5b (2021.09.27) </p>  
     <div id="main">
       <canvas id="sheet" width="232" height="83" style="border:1px solid black;box-shadow: 2px 2px slategrey;"></canvas>
       <div id="buttons">
@@ -16,12 +16,11 @@
         <input type="image" id="fill" class="button_fill" src="./assets/btn/fill.png">
         <input type="image" id="pencil" class="tool_pencil" src="./assets/btn/brush.png">
         <input type="image" id="eraser" class="tool_eraser" src="./assets/btn/eraser.png">
-        <input type="image" id="large" class="tool_large" src="./assets/btn/large.png">
-        <input type="image" id="small" class="tool_small" src="./assets/btn/small.png">
+        <input type="image" id="large" class="selection_large" src="./assets/btn/large.png">
+        <input type="image" id="small" class="selection_small" src="./assets/btn/small.png">
         </div>
     </div>
         <p id="selected" style=" color: black;"></p>
-       
     
     <script type="text/javascript">
     
@@ -44,7 +43,7 @@
       var clear = document.getElementById('clear');
       //var eraser = document.getElementById('eraser');
       var canvas = document.getElementById('sheet');
-      var displayWidth = document.getElementById('selected')
+      var displayWidth = document.getElementById('selected');
       var displayTool = document.getElementById('selected');
 
       const ctx = canvas.getContext('2d'); 
@@ -129,13 +128,13 @@
       }
 
       function onMouseOut(event) {
-      	pencil.started = false;
+        pencil.started=false;
       }
 
       canvas.addEventListener('mousedown', onMouseEvent, false);
       canvas.addEventListener('mousemove', onMouseEvent, false);
       canvas.addEventListener('mouseup', onMouseEvent, false);
-      canvas.addEventListener('mouseout', onMouseOut);
+      canvas.addEventListener('mouseout', onMouseOut); //fix brush hanging when exiting canvas
       clear.addEventListener('click', onClearEvent, false);
       fill.addEventListener('click', onFillEvent, false);
 
@@ -171,10 +170,8 @@
         image-rendering: pixelated;
       } 
       input {
-        border: 1px solid black;
-        margin-left: 13px;
-        box-shadow: 2px 2px slategrey;
-      }
+        margin-left: 11px;
+        }
 
       #buttons {
         margin-top: 10px;
